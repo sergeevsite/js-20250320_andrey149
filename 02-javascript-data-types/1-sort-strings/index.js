@@ -5,5 +5,12 @@
  * @returns {string[]}
  */
 export function sortStrings(arr, param = 'asc') {
-
+  const comparison = (a, b) => a.localeCompare(b, ['ru', 'en'], { caseFirst: "upper" });
+  // localeCompare для диакритических знаков использует параметр { sensitivity: variant } по умолчанию
+  
+  return [...arr].sort((a, b) =>
+    param === 'asc'
+      ? comparison(a, b)
+      : comparison(b, a)
+  );
 }
