@@ -7,5 +7,5 @@
 export const pick = (obj, ...fields) => {
   const fieldsCollection = new Set(fields);
   const filteredObject = Object.entries(obj).filter(([key]) => fieldsCollection.has(key));
-  return {...Object.fromEntries(filteredObject)};
+  return Object.fromEntries(filteredObject);
 };
