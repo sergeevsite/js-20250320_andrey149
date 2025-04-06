@@ -66,11 +66,6 @@ export default class ColumnChart {
 
   update(newData) {
     this.data = newData;
-    //
-    // const bodyElement = this.element.querySelector('[data-element="body"]');
-    // bodyElement.innerHTML = this.createChartTemplate();
-    // this.addLoadingChartClasses();
-    //
     const newElement = this.createElement();
     this.element.replaceWith(newElement);
     this.element = newElement;
