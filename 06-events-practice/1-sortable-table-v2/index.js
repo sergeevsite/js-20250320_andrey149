@@ -39,29 +39,26 @@ export default class SortableTable extends SortableTableV1 {
 
   // Listeners
   handleHeaderColumnClick = (event) => {
-    const headerColumn = event.target.closest('.sortable-table__cell');
+    const headerColumn = event.target.closest('[data-sortable="true"]');
 
     if (!headerColumn) {
       return;
     }
 
-    const {id, sortable, order} = headerColumn.dataset;
-    if (!JSON.parse(sortable)) {
-      return;
-    }
+    const {id, order} = headerColumn.dataset;
 
     const columnName = id;
-    const columnOrder = order === 'asc' ? 'desc' : 'asc';
+    const columnOrder = order === 'desc' ? 'asc' : 'desc';
 
     this.sortOnClient(columnName, columnOrder);
   }
 
   createListeners() {
-    this.subElements.header.addEventListener('click', this.handleHeaderColumnClick);
+    this.subElements.header.addEventListener('pointerdown', this.handleHeaderColumnClick);
   }
 
   removeListeners() {
-    this.subElements.header.removeEventListener('click', this.handleHeaderColumnClick);
+    this.subElements.header.removeEventListener('pointerdown', this.handleHeaderColumnClick);
   }
 
   // Utils
